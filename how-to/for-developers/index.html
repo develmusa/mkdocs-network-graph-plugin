@@ -474,6 +474,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#running-the-documentation-site-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Documentation Site Locally
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-tests" class="md-nav__link">
     <span class="md-ellipsis">
       Running Tests
@@ -492,9 +501,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#submitting-changes" class="md-nav__link">
+  <a href="#using-pre-commit-hooks" class="md-nav__link">
     <span class="md-ellipsis">
-      Submitting Changes
+      Using Pre-Commit Hooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribution Checklist
     </span>
   </a>
   
@@ -710,6 +728,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#running-the-documentation-site-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Documentation Site Locally
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-tests" class="md-nav__link">
     <span class="md-ellipsis">
       Running Tests
@@ -728,9 +755,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#submitting-changes" class="md-nav__link">
+  <a href="#using-pre-commit-hooks" class="md-nav__link">
     <span class="md-ellipsis">
-      Submitting Changes
+      Using Pre-Commit Hooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribution Checklist
     </span>
   </a>
   
@@ -771,29 +807,77 @@
 <ul>
 <li><a href="https://www.python.org/"><strong>Python</strong></a></li>
 <li><a href="https://github.com/astral-sh/uv"><strong>uv</strong></a></li>
+<li><a href="https://git-scm.com/"><strong>Git</strong></a></li>
 </ul>
 <h2 id="setting-up-the-development-environment">Setting up the Development Environment<a class="headerlink" href="#setting-up-the-development-environment" title="Permanent link">&para;</a></h2>
-<p>To get started, clone the repository and install the project in editable mode with its development dependencies:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[dev]&#39;</span>
+<ol>
+<li>
+<p><strong>Clone the repository and navigate into the directory:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/develmusa/mkdocs-network-graph-plugin.git
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>mkdocs-network-graph-plugin
 </code></pre></div>
-<p>This command should be used initially to set up your environment and whenever you add new dependencies to <code>pyproject.toml</code>.</p>
+</li>
+<li>
+<p><strong>Setup the development environment:</strong>
+    Run the following commands to set up your environment.</p>
+<p>First, sync your virtual environment with the project's dependencies:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>sync
+</code></pre></div>
+<p>Next, install the required Python versions for testing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span><span class="m">3</span>.13
+</code></pre></div>
+<p>Install the project in editable mode, along with the development tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[dev]&#39;</span>
+</code></pre></div>
+<p>Finally, install the pre-commit hooks:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
+</code></pre></div>
+</li>
+</ol>
+<h2 id="running-the-documentation-site-locally">Running the Documentation Site Locally<a class="headerlink" href="#running-the-documentation-site-locally" title="Permanent link">&para;</a></h2>
+<p>To preview the documentation and see your changes live, you'll need to run a local server.</p>
+<ol>
+<li>
+<p><strong>Start the local server:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>You can now view the documentation at <code>http://127.0.0.1:8000/</code>. The server will automatically reload when you make changes.</p>
+</li>
+</ol>
 <h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
-<p>This project uses <a href="https://docs.pytest.org/"><strong><code>pytest</code></strong></a> for testing. To run the full test suite, execute the following command from the project's root directory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest
+<p>This project uses <a href="https://nox.thea.codes/"><strong><code>nox</code></strong></a> to run the test suite across multiple Python versions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uv<span class="w"> </span>run<span class="w"> </span>nox<span class="w"> </span>-s<span class="w"> </span>tests
+</code></pre></div>
+<p>You can also run tests for your current Python environment using <a href="https://docs.pytest.org/"><strong><code>pytest</code></strong></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest
 </code></pre></div>
 <h2 id="code-style">Code Style<a class="headerlink" href="#code-style" title="Permanent link">&para;</a></h2>
-<p>This project uses <a href="https://docs.astral.sh/ruff/"><strong><code>Ruff</code></strong></a> for linting and code formatting. To check your code for errors, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+<p>This project uses <a href="https://docs.astral.sh/ruff/"><strong><code>Ruff</code></strong></a> for linting and formatting. You can run the <code>lint</code> session with <code>nox</code> to check and fix issues:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>run<span class="w"> </span>nox<span class="w"> </span>-s<span class="w"> </span>lint
 </code></pre></div>
-<p>To automatically format your code, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+<p>Alternatively, you can run <code>ruff</code> directly:</p>
+<p>To check your code for errors:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
 </code></pre></div>
-<h2 id="submitting-changes">Submitting Changes<a class="headerlink" href="#submitting-changes" title="Permanent link">&para;</a></h2>
-<p>Before you submit a pull request, please make sure you have:</p>
-<ul>
-<li>Added your changes to the <code>CHANGELOG.md</code> file.</li>
-<li>Run the tests and ensured they all pass.</li>
-<li>Formatted your code with <code>ruff</code>.</li>
+<p>To automatically format your code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+</code></pre></div>
+<h2 id="using-pre-commit-hooks">Using Pre-Commit Hooks<a class="headerlink" href="#using-pre-commit-hooks" title="Permanent link">&para;</a></h2>
+<p>This project uses <a href="https://pre-commit.com/">pre-commit</a> to automatically enforce code style and run checks before each commit. The hooks are installed when you set up the development environment.</p>
+<p>With pre-commit installed, the defined checks will run on any staged files every time you run <code>git commit</code>. If a check fails, the commit will be aborted, allowing you to fix the issues before proceeding.</p>
+<p>To update the pre-commit hooks to their latest versions, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>autoupdate
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The setup, documentation, testing and linting commands are also available as tasks in <code>.vscode/tasks.json</code> for Visual Studio Code users.</p>
+</div>
+<h2 id="contribution-checklist">Contribution Checklist<a class="headerlink" href="#contribution-checklist" title="Permanent link">&para;</a></h2>
+<p>Before submitting a pull request, please ensure you have completed the following steps:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Added your changes to the <code>CHANGELOG.md</code> file.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ensured all tests pass by running <code>uv run pytest</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Verified that all pre-commit hooks pass on your changes.</li>
 </ul>
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
