@@ -85,11 +85,25 @@ class Graph:
             if not url:
                 continue
 
-            target_path = os.path.normpath(os.path.join(os.path.dirname(node_id), url))
-
-            # Check if the target is a node in the graph
-            if any(node["id"] == target_path for node in self.nodes):
-                yield {"source": node_id, "target": target_path}
+            # For wikilinks, search all nodes by filename since they typically
+            # reference files without full paths (e.g., [[PageName]] can link
+            # to any PageName.md regardless of directory)
+            is_wikilink = match.group("wikilink") is not None
+            if is_wikilink:
+                target_filename = os.path.basename(url)
+                for node in self.nodes:
+                    node_filename = os.path.basename(node["id"])
+                    if node_filename == target_filename and node["id"] != node_id:
+                        yield {"source": node_id, "target": node["id"]}
+                        break
+            else:
+                # Standard markdown links: resolve relative to current file
+                target_path = os.path.normpath(
+                    os.path.join(os.path.dirname(node_id), url)
+                )
+                # Check if the target is a node in the graph
+                if any(node["id"] == target_path for node in self.nodes):
+                    yield {"source": node_id, "target": target_path}
 
     def _create_edges(self, files: Files):
         """Create edges by parsing links from markdown files."""
