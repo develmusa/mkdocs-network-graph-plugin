@@ -59,6 +59,14 @@ plugins:
   - graph
 ```
 
+As part of the package, the plugin looks for the key `site_url` in order to create the appropriate URLs to link and create the graphs. If you are experiencing an empty graph, enter a URL along with the protocol to your `mkdocs.yml` file. E.g.:
+
+```yaml
+site_url: "https://example.com/username/repository"
+```
+
+If you are using `mkdocs serve` to preview your website, you may wish to pass an address argument. E.g., `mkdocs serve -a localhost:8000`
+
 ### 3. Build your docs
 
 ```bash
